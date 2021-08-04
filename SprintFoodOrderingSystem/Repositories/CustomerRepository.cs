@@ -22,7 +22,7 @@ namespace SprintProject.Repositories
 
         public void AddOrder(Order order)
         {
-            context.Add(order);
+            context.Orders.Add(order);
             context.SaveChanges();
         }
 
@@ -43,7 +43,7 @@ namespace SprintProject.Repositories
         public void DeleteOrder(int orderId)
         {
             Order order = context.Orders.SingleOrDefault(s => s.OrderId == orderId);
-            context.Remove(orderId);
+            context.Orders.Remove(order);
             context.SaveChanges();
         }
 
@@ -51,14 +51,27 @@ namespace SprintProject.Repositories
         {
             OrderItem orderitem = context.OrderItems.SingleOrDefault(s => 
             s.OrderItemId == orderItemId);
-            context.Remove(orderItemId);
+            context.OrderItems.Remove(orderitem);
             context.SaveChanges();
         }
 
         public void EditOrder(int orderId)
         {
+            //var orders = (from or in context.OrderItems
+            //             where or.OrderId == orderId
+            //             select or).ToList();
+            
+            //decimal? totalamount = 0;
+            
+            //foreach (var i in orders)
+            //{
+            //    decimal serving = Convert.ToDecimal(i.NoofServing);
+            //    totalamount += (i.Amount * serving);
+            //}
+
             Order order = context.Orders.SingleOrDefault(s => s.OrderId == orderId);
-            context.Update(order);
+            //order.TotalAmount = totalamount;
+            context.Orders.Update(order);
             context.SaveChanges();
         }
 
@@ -66,22 +79,26 @@ namespace SprintProject.Repositories
         {
             OrderItem orderitem = context.OrderItems.SingleOrDefault(s => 
             s.OrderItemId == orderItemId);
-            context.Update(orderItemId);
+            context.OrderItems.Update(orderitem);
             context.SaveChanges();
         }
 
         public List<Menu> GetMenu() => context.Menus.ToList();
+
+        public List<Order> GetOrders() => context.Orders.ToList();
+        
+
         public void MakePayment(Payment payment)
         {
             context.Add(payment);
             context.SaveChanges();
         }
 
-        //public void TrackOrder(Order order)
-        //{
-            
-                
-        //}
+        public string TrackOrder(int orderId)
+        {
+            Order order = context.Orders.SingleOrDefault(s => s.OrderId == orderId);
+            return $"Order Status: {order.OrderStatus}";
+        }
 
         public void UpdateCustomer(Customer customer)
         {

@@ -12,6 +12,7 @@ namespace SprintFoodOrderingSystem.Models
         public decimal? TotalAmount { get; set; }
         public string PaidBy { get; set; }
         public string PaymentStatus { get; set; }
+
         public virtual Order Order { get; set; }
     }
 }

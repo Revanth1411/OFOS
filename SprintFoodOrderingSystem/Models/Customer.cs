@@ -17,7 +17,7 @@ namespace SprintFoodOrderingSystem.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public long? Mobile { get; set; }
-        internal string CustPassword { get; set; }
+        public string CustPassword { get; set; }
         public string CustStatus { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }

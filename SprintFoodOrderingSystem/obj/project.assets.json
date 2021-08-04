@@ -5984,11 +5984,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\SprintFoodOrderingSystem\\SprintFoodOrderingSystem.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS\\OneDrive\\Desktop\\Project\\OFOS\\SprintFoodOrderingSystem\\SprintFoodOrderingSystem.csproj",
       "projectName": "SprintFoodOrderingSystem",
-      "projectPath": "C:\\Users\\ASUS\\source\\repos\\SprintFoodOrderingSystem\\SprintFoodOrderingSystem.csproj",
+      "projectPath": "C:\\Users\\ASUS\\OneDrive\\Desktop\\Project\\OFOS\\SprintFoodOrderingSystem\\SprintFoodOrderingSystem.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS\\source\\repos\\SprintFoodOrderingSystem\\obj\\",
+      "outputPath": "C:\\Users\\ASUS\\OneDrive\\Desktop\\Project\\OFOS\\SprintFoodOrderingSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",

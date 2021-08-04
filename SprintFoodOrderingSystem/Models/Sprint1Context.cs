@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
@@ -22,14 +24,14 @@ namespace SprintFoodOrderingSystem.Models
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-////To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                optionsBuilder.UseSqlServer("Server=LAPTOP-O20R4U5P;Database=Sprint1;Trusted_Connection=True;");
-//            }
-//        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=LAPTOP-O20R4U5P;Database=Sprint1;Trusted_Connection=True;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -143,11 +145,11 @@ namespace SprintFoodOrderingSystem.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__OrderItem__MenuI__4316F928");
 
-                //entity.HasOne(d => d.Order)
-                //    //.WithMany(p => p.OrderItems)
-                //    .HasForeignKey(d => d.OrderId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK__OrderItem__Order__4222D4EF");
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderItems)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__OrderItem__Order__4222D4EF");
             });
 
             modelBuilder.Entity<Payment>(entity =>
@@ -166,10 +168,10 @@ namespace SprintFoodOrderingSystem.Models
 
                 entity.Property(e => e.TotalAmount).HasColumnType("decimal(18, 0)");
 
-                //entity.HasOne(d => d.Order)
-                //    .WithMany(p => p.Payments)
-                //    .HasForeignKey(d => d.OrderId)
-                //    .HasConstraintName("FK__Payment__OrderId__45F365D3");
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Payments)
+                    .HasForeignKey(d => d.OrderId)
+                    .HasConstraintName("FK__Payment__OrderId__45F365D3");
             });
 
             OnModelCreatingPartial(modelBuilder);

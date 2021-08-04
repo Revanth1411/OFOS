@@ -12,13 +12,14 @@ namespace SprintProject.Repositories
         public void UpdateCustomer(Customer customer);
         public void DeleteCustomer(int CustId);
         public List<Menu> GetMenu();
-        //public void AddOrderItem(OrderItem orderItem);
-        //public void DeleteOrderItem(int orderItemId);
-        //public void EditOrderItem(int orderId);
-        ////public void TrackOrder(int orderId);
-        //public void AddOrder(Order order);
-        //public void DeleteOrder(int orderId);
-        //public void EditOrder(Order order);
+        public List<Order> GetOrders();
+        public void AddOrderItem(OrderItem orderItem);
+        public void DeleteOrderItem(int orderItemId);
+        public void EditOrderItem(int orderId);
+        public string TrackOrder(int orderId);
+        public void AddOrder(Order order);
+        public void DeleteOrder(int orderId);
+        public void EditOrder(int orderId);
         public void MakePayment(Payment payment);
     }
 }

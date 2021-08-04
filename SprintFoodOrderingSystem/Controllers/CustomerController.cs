@@ -35,25 +35,6 @@ namespace SprintFoodOrderingSystem.Controllers
             }
         }
 
-        
-
-        // Make Payment By OrderId
-        [HttpPost]
-        [Route("MakePayment")]
-        public IActionResult MakePayment(Payment payment)
-        {
-            try
-            {
-                _repository.MakePayment(payment);
-                return Ok("payment Success");
-                
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         //Update Customer Details
         [HttpPost]
         [Route("UpdateCustomerDetails")]
@@ -79,6 +60,147 @@ namespace SprintFoodOrderingSystem.Controllers
             {
                 _repository.DeleteCustomer(customerId);
                 return Ok("Deleted Customer");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("AddOrder")]
+
+        public IActionResult AddOrder(Order order)
+        {
+            try
+            {
+                _repository.AddOrder(order);
+                return Ok("Order Added");
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("AddOrderItem")]
+
+        public IActionResult AddOrderItem(OrderItem orderitem)
+        {
+            try
+            {
+                _repository.AddOrderItem(orderitem);
+                return Ok("Order Item Added");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("DeleteOrder/{orderId}")]
+        public IActionResult DeleteOrder(int orderId)
+        {
+            try
+            {
+                _repository.DeleteOrder(orderId);
+                return Ok("Deleted Order");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpDelete]
+        [Route("DeleteOrderItem/{orderId}")]
+        public IActionResult DeleteOrderItem(int orderItemId)
+        {
+            try
+            {
+                _repository.DeleteOrder(orderItemId);
+                return Ok("Deleted OrderItem");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("EditOrder/{orderId}")]
+
+        public IActionResult EditOrder(int orderId)
+        {
+            try
+            {
+                _repository.EditOrder(orderId);
+                return Ok("Order Updated");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("EditOrderItem/{orderItemId}")]
+
+        public IActionResult EditOrderItem(int orderItemId)
+        {
+            try
+            {
+                _repository.EditOrder(orderItemId);
+                return Ok("OrderItem Updated");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("MenuList")]
+        public List<Menu> GetMenu()
+        {
+            return _repository.GetMenu();
+        }
+
+        [HttpGet]
+        [Route("OrderList")]
+        public List<Order> GetOrder()
+        {
+            return _repository.GetOrders();
+        }
+
+
+        // Make Payment By OrderId
+        [HttpPost]
+        [Route("MakePayment")]
+        public IActionResult MakePayment(Payment payment)
+        {
+            try
+            {
+                _repository.MakePayment(payment);
+                return Ok("payment Success");
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("Status")]
+        public IActionResult TrackOrder(int orderId)
+        {
+            try
+            {
+                _repository.TrackOrder(orderId);
+                return Ok("OrderStatus Updated");
             }
             catch (Exception ex)
             {
