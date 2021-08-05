@@ -1,8 +1,6 @@
 ﻿using SprintFoodOrderingSystem.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SprintProject.Repositories
 {
@@ -13,12 +11,15 @@ namespace SprintProject.Repositories
         {
             this.context= context;
         }
+
+        //Add item into Menu
         public void AddItem(Menu menu)
         {
             context.Add(menu);
             context.SaveChanges();
         }
 
+        //Delete item from menu
         public void DeleteItem(int menuId)
         {
             Menu menu = context.Menus.SingleOrDefault(s => s.MenuId ==
@@ -26,6 +27,8 @@ namespace SprintProject.Repositories
             context.Menus.Remove(menu);
             context.SaveChanges();
         }
+
+        //Get customer details
         public object GetCustomers(int custId)
         {
             var data = (from cus in context.Customers
@@ -43,20 +46,24 @@ namespace SprintProject.Repositories
 
         }
 
+        //Get complete menu
         public List<Menu> GetMenu() => context.Menus.ToList();
 
+        //Get single menu item
         public Menu GetMenuItem(int menuId)
         {
             Menu menu = context.Menus.SingleOrDefault(s => s.MenuId == menuId);
             return menu;
         }
 
+        //Get order status
         public void OrderStatus(Order orders)
         {
             context.Orders.Update(orders);
             context.SaveChanges();
         }
 
+        //Update item in menu
         public void UpdateItem(Menu menu)
         {
             context.Menus.Update(menu);

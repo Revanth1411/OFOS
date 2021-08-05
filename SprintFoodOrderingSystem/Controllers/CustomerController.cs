@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SprintFoodOrderingSystem.Models;
 using SprintProject.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SprintFoodOrderingSystem.Controllers
 {
@@ -36,7 +33,7 @@ namespace SprintFoodOrderingSystem.Controllers
         }
 
         //Update Customer Details
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateCustomerDetails")]
         public IActionResult UpdateCustomer(Customer customer)
         {
@@ -51,7 +48,7 @@ namespace SprintFoodOrderingSystem.Controllers
             }
         }
 
-        //Delete Customer By customerId
+        //Delete Customer by customerId
         [HttpDelete]
         [Route("DeleteCustomer/{customerId}")]
         public IActionResult DeleteCustomer(int customerId)
@@ -67,9 +64,9 @@ namespace SprintFoodOrderingSystem.Controllers
             }
         }
 
+        //Add order 
         [HttpPost]
         [Route("AddOrder")]
-
         public IActionResult AddOrder(Order order)
         {
             try
@@ -83,9 +80,9 @@ namespace SprintFoodOrderingSystem.Controllers
             }
         }
 
+        //Add orderitem
         [HttpPost]
         [Route("AddOrderItem")]
-
         public IActionResult AddOrderItem(OrderItem orderitem)
         {
             try
@@ -99,6 +96,7 @@ namespace SprintFoodOrderingSystem.Controllers
             }
         }
 
+        //Delete order
         [HttpDelete]
         [Route("DeleteOrder/{orderId}")]
         public IActionResult DeleteOrder(int orderId)
@@ -113,7 +111,8 @@ namespace SprintFoodOrderingSystem.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        
+
+        //Delete order item
         [HttpDelete]
         [Route("DeleteOrderItem/{orderId}")]
         public IActionResult DeleteOrderItem(int orderItemId)
@@ -129,9 +128,9 @@ namespace SprintFoodOrderingSystem.Controllers
             }
         }
 
+        //Edit order
         [HttpPut]
         [Route("EditOrder/{orderId}")]
-
         public IActionResult EditOrder(int orderId)
         {
             try
@@ -145,9 +144,9 @@ namespace SprintFoodOrderingSystem.Controllers
             }
         }
 
+        //Edit orderitem
         [HttpPut]
         [Route("EditOrderItem/{orderItemId}")]
-
         public IActionResult EditOrderItem(int orderItemId)
         {
             try
@@ -161,6 +160,7 @@ namespace SprintFoodOrderingSystem.Controllers
             }
         }
 
+        //Get complete menu as a list
         [HttpGet]
         [Route("MenuList")]
         public List<Menu> GetMenu()
@@ -168,6 +168,7 @@ namespace SprintFoodOrderingSystem.Controllers
             return _repository.GetMenu();
         }
 
+        //Get complete orders as a list
         [HttpGet]
         [Route("OrderList")]
         public List<Order> GetOrder()
@@ -193,6 +194,7 @@ namespace SprintFoodOrderingSystem.Controllers
             }
         }
 
+        //To track order
         [HttpPut]
         [Route("Status")]
         public IActionResult TrackOrder(int orderId)
