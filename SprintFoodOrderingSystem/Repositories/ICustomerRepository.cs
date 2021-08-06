@@ -17,11 +17,17 @@ namespace SprintProject.Repositories
         //Get complete menu as a list
         public List<Menu> GetMenu();
 
+        //Get order items
+        public List<OrderItem> GetOrderItems();
+
         //Get all orders as a list
         public List<Order> GetOrders();
 
         //Method to add orderitem
         public void AddOrderItem(OrderItem orderItem);
+
+        //Method to get orderitem
+        public OrderItem GetOrderItem(int orderId);
 
         //Method to delete orderitem
         public void DeleteOrderItem(int orderItemId);

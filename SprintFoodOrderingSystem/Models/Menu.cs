@@ -21,7 +21,7 @@ namespace SprintFoodOrderingSystem.Models
         public int? Quantity { get; set; }
 
         //Method to enter the price of each quantity
-        public decimal? Price { get; set; }
+        public int Price { get; set; }
 
         //Method to enter the Food Category
         public string FoodCategory { get; set; }

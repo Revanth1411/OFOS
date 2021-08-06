@@ -209,5 +209,13 @@ namespace SprintFoodOrderingSystem.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        //To get orderitem
+        [HttpGet]
+        [Route("GetOrderItem/{OrderId}")]
+        public OrderItem GetOrderItem(int OrderId)
+        {
+            return _repository.GetOrderItem(OrderId);
+        }
     }
 }

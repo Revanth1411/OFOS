@@ -31,8 +31,22 @@ namespace SprintProject.Repositories
         //Add orderitem
         public void AddOrderItem(OrderItem orderItem)
         {
+            int menuId = orderItem.MenuId;
+            int price = SumTotal(menuId);
+            int noofServing = orderItem.NoofServing;
+            int totalAmount = (noofServing * price);
+            orderItem.Total = totalAmount;
+            orderItem.Amount = price;
             context.OrderItems.Add(orderItem);
             context.SaveChanges();
+        }
+
+        //Get the total
+        public int SumTotal(int menuId)
+        {
+            Menu menu = context.Menus.SingleOrDefault(i => i.MenuId == menuId);
+            return menu.Price;
+
         }
 
         //Delete customer
@@ -81,24 +95,14 @@ namespace SprintProject.Repositories
         //Get complete menu as a list
         public List<Menu> GetMenu() => context.Menus.ToList();
 
+        public List<OrderItem> GetOrderItems() => context.OrderItems.ToList();
+
         //Get complete orders as a list
         public List<Order> GetOrders() => context.Orders.ToList();
         
         //Make payment
         public void MakePayment(Payment payment)
         {
-            //var orders = (from or in context.OrderItems
-            //             where or.OrderId == orderId
-            //             select or).ToList();
-
-            //decimal? totalamount = 0;
-
-            //foreach (var i in orders)
-            //{
-            //    decimal serving = Convert.ToDecimal(i.NoofServing);
-            //    totalamount += (i.Amount * serving);
-            //}
-            //order.TotalAmount = totalamount;
             context.Add(payment);
             context.SaveChanges();
         }
@@ -115,6 +119,12 @@ namespace SprintProject.Repositories
         {
             context.Customers.Update(customer);
             context.SaveChanges();
+        }
+
+        public OrderItem GetOrderItem(int orderId)
+        {
+            OrderItem orderItem = context.OrderItems.SingleOrDefault(s => s.OrderId == orderId);
+            return orderItem;
         }
     }
 }

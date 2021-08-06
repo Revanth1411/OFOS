@@ -14,7 +14,7 @@ namespace SprintFoodOrderingSystem.Models
         public decimal? Amount { get; set; }
 
         //Method to enter number of servings required
-        public int? NoofServing { get; set; }
+        public int NoofServing { get; set; }
 
         //Method to get the total amount
         public decimal? Total { get; set; }
